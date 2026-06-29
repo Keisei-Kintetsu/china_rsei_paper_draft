@@ -2,11 +2,7 @@
 
 This repository stores shareable PDF drafts for the China 30 m RSEI paper.
 
-Current combined PDF:
-
-- `Long-term_30m_ecological_quality_dynamics in_China_revealed_by_a_cross-sensor-consistent_annual_RSEI_record_Jun29.pdf`
-
-After the first script run, the latest shareable files will be:
+Current shareable files:
 
 - `latest/main.pdf`
 - `latest/supplementary.pdf`
@@ -24,3 +20,8 @@ What the script does:
 2. Updates `latest/main.pdf` and `latest/supplementary.pdf`.
 3. Archives the same files in `versions/<folder_name>/`.
 4. Runs `git add`, `git commit`, and `git push` automatically.
+
+Current archived version:
+
+- `versions/20260624_1221/main.pdf`
+- `versions/20260624_1221/supplementary.pdf`

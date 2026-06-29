@@ -2,6 +2,25 @@
 
 set -eu
 
+copy_file() {
+  src=$1
+  dst=$2
+
+  if cp "$src" "$dst" 2>/dev/null; then
+    return 0
+  fi
+
+  dst_dir=$(dirname "$dst")
+  base_name=$(basename "$src")
+
+  mkdir -p "$dst_dir"
+  osascript -e "tell application \"Finder\" to duplicate POSIX file \"$src\" to POSIX file \"$dst_dir/\" with replacing"
+
+  if [ "$dst" != "$dst_dir/$base_name" ] && [ -f "$dst_dir/$base_name" ]; then
+    mv "$dst_dir/$base_name" "$dst"
+  fi
+}
+
 usage() {
   echo "Usage: sh scripts/publish_draft.sh /path/to/draft_dir [version_tag]"
   echo "Expected files inside draft_dir: main.pdf and supplementary.pdf"
@@ -34,10 +53,10 @@ VERSION_DIR="$REPO_ROOT/versions/$VERSION_TAG"
 
 mkdir -p "$LATEST_DIR" "$VERSION_DIR"
 
-cp "$MAIN_SRC" "$LATEST_DIR/main.pdf"
-cp "$SUPP_SRC" "$LATEST_DIR/supplementary.pdf"
-cp "$MAIN_SRC" "$VERSION_DIR/main.pdf"
-cp "$SUPP_SRC" "$VERSION_DIR/supplementary.pdf"
+copy_file "$MAIN_SRC" "$LATEST_DIR/main.pdf"
+copy_file "$SUPP_SRC" "$LATEST_DIR/supplementary.pdf"
+copy_file "$MAIN_SRC" "$VERSION_DIR/main.pdf"
+copy_file "$SUPP_SRC" "$VERSION_DIR/supplementary.pdf"
 
 git -C "$REPO_ROOT" add latest versions
 
