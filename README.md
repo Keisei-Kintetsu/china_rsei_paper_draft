@@ -6,10 +6,10 @@ Current combined PDF:
 
 - `Long-term_30m_ecological_quality_dynamics in_China_revealed_by_a_cross-sensor-consistent_annual_RSEI_record_Jun29.pdf`
 
-Recommended sharing links:
+After the first script run, the latest shareable files will be:
 
-- Latest main draft: [latest/main.pdf](latest/main.pdf)
-- Latest supplementary: [latest/supplementary.pdf](latest/supplementary.pdf)
+- `latest/main.pdf`
+- `latest/supplementary.pdf`
 
 Repeatable workflow for a new draft folder:
 
